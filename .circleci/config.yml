@@ -61,10 +61,10 @@ workflows:
           requires:
             - run-tests
           context:
-            - dod-pypi
-          filters:
+            - gemfury
+#          filters:
             # only publish gem after cutting tag
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+#            tags:
+#              only: /.*/
+#            branches:
+#              ignore: /.*/
