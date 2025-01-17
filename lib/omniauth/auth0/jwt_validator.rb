@@ -90,7 +90,7 @@ module OmniAuth
           iss: @issuer,
           verify_aud: true,
           aud: @client_id,
-          verify_not_before: false
+          verify_not_before: true
         }
       end
 
