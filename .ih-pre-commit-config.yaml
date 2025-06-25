@@ -1,0 +1,8 @@
+languages:
+- json
+- markdown
+- ruby
+- shell
+- text
+- yaml
+ignored_directories: []

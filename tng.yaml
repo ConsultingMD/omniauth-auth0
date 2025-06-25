@@ -1,0 +1,7 @@
+type: repository
+apiVersion: v1
+spec:
+  repository: omniauth-auth0
+  services:
+  - name: omniauth-auth0
+    platformDirectory: /

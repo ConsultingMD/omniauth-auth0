@@ -16,5 +16,8 @@ Metrics/AbcSize:
     - 'spec/**/*.rb'
     - 'spec/spec_helper.rb'
 AllCops:
+  SuggestExtensions: false
   Exclude:
     - 'omniauth-auth0.gemspec'
+    - 'lib/omniauth-auth0.rb'
+    - 'spec/spec_helper.rb'

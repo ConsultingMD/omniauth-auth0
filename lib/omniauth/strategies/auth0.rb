@@ -80,8 +80,8 @@ module OmniAuth
       def authorize_params
         params = super
         parsed_query = Rack::Utils.parse_query(request.query_string)
-        passthru = ['connection', 'prompt'] | options.authorize_params_passthru
-        params.merge(parsed_query.select{ |key| passthru.include? key })
+        passthru = %w[connection prompt] | options.authorize_params_passthru
+        params.merge(parsed_query.select { |key| passthru.include? key })
       end
 
       def build_access_token

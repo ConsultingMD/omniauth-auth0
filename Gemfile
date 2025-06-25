@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gemspec
@@ -5,6 +7,10 @@ gemspec
 gem 'gem-release'
 gem 'jwt'
 gem 'rake'
+
+# Pin to newer versions for security
+gem 'omniauth', '~> 2.0'
+gem 'rack', '~> 3.0'
 
 group :development do
   gem 'dotenv'
@@ -16,11 +22,13 @@ group :development do
 end
 
 group :test do
-  gem 'guard-rspec', require: false
-  gem 'listen', '~> 3.1.5'
-  gem 'rack-test'
-  gem 'rspec', '~> 3.5'
   gem 'codecov', require: false
+  gem 'guard-rspec', require: false
+  gem 'listen', '~> 3.5'
+  gem 'multi_json'
+  gem 'omniauth-rails_csrf_protection' # For OmniAuth 2.x testing
+  gem 'rack-test', '~> 2.0'
+  gem 'rspec', '~> 3.12'
   gem 'simplecov'
   gem 'webmock'
 end

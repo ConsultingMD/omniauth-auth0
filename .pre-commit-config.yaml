@@ -1,0 +1,61 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+        args:
+          - --maxkb=500
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+  - repo: git@github.com:ConsultingMD/image-builder.git
+    rev: v2.2.9
+    hooks:
+      - id: brakeman
+        name: Ruby Security Linter
+        types:
+          - ruby
+        pass_filenames: false
+        require_serial: true
+        stages:
+          - manual
+      - id: validate-codecov
+      - id: tng-config-validate
+      - id: validate-jira
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.20
+    hooks:
+      - id: shellcheck
+        types:
+          - shell
+  - repo: https://github.com/rubocop/rubocop
+    rev: v1.49.0
+    hooks:
+      - id: rubocop
+        types:
+          - ruby
+        args:
+          - --autocorrect
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.7.0
+    hooks:
+      - id: prettier
+        types_or:
+          - javascript
+          - jsx
+          - json
+          - ts
+          - tsx
+          - css
+          - scss
+          - less
+          - html
+          - json
+          - graphql
+          - markdown
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.16.1
+    hooks:
+      - id: gitleaks

@@ -1,11 +1,13 @@
 # OmniAuth Auth0
 
 ## FORK ADDITIONS
+
 1. PASSTHRU PARAMETERS
 2. CUSTOM JWK HOST DOMAIN
-____
 
-An [OmniAuth](https://github.com/intridea/omniauth) strategy for authenticating with [Auth0](https://auth0.com). This strategy is based on the [OmniAuth OAuth2](https://github.com/omniauth/omniauth-oauth2) strategy. 
+---
+
+An [OmniAuth](https://github.com/intridea/omniauth) strategy for authenticating with [Auth0](https://auth0.com). This strategy is based on the [OmniAuth OAuth2](https://github.com/omniauth/omniauth-oauth2) strategy.
 
 **Important security note:** The parent library for this strategy currently has an unresolved security issue. Please see the discussion, including mitigations for Rails and non-Rails applications, [here](https://github.com/auth0/omniauth-auth0/issues/82).
 
@@ -44,13 +46,15 @@ If you're using this strategy with Rails, also add the following for CSRF protec
 gem 'omniauth-rails_csrf_protection'
 ```
 
+For omniauth 2.x compatibility, ensure you have proper CSRF protection configured in your application.
+
 Then install:
 
 ```bash
 $ bundle install
 ```
 
-See our [contributing guide](CONTRIBUTING.md) for information on local installation for development. 
+See our [contributing guide](CONTRIBUTING.md) for information on local installation for development.
 
 ## Getting Started
 
@@ -68,7 +72,7 @@ All of these tasks and more are covered in our [Ruby on Rails Quickstart](https:
 To send additional parameters during login, you can specify them when you register the provider:
 
 ```ruby
-provider 
+provider
   :auth0,
   ENV['AUTH0_CLIENT_ID'],
   ENV['AUTH0_CLIENT_SECRET'],
@@ -81,6 +85,7 @@ provider
     }
   }
 ```
+
 ... which will tell the strategy to send those parameters on every authentication request.
 
 #### Passthru parameters
@@ -159,7 +164,7 @@ We appreciate feedback and contribution to this repo! Before you get started, pl
 
 - Use [Community](https://community.auth0.com/) for usage, questions, specific cases.
 - Use [Issues](https://github.com/auth0/omniauth-auth0/issues) here for code-level support and bug reports.
-- Paid customers can use [Support](https://support.auth0.com/) to submit a trouble ticket for production-affecting issues. 
+- Paid customers can use [Support](https://support.auth0.com/) to submit a trouble ticket for production-affecting issues.
 
 ## Vulnerability Reporting
 

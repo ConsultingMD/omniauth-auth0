@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'json'
 
 module OmniAuth
   module Auth0
     # Module to provide necessary telemetry for API requests.
     module Telemetry
-
       # Return a telemetry hash to be encoded and sent to Auth0.
       # @return hash
       def telemetry
@@ -28,6 +29,7 @@ module OmniAuth
 
       def add_rails_version(telemetry)
         return telemetry unless Gem.loaded_specs['rails'].respond_to? :version
+
         telemetry[:env][:rails] = Gem.loaded_specs['rails'].version.to_s
         telemetry
       end

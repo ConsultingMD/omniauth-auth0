@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'json'
 require 'jwt'
-require 'byebug'
+require 'ostruct'
 
 describe OmniAuth::Auth0::JWTValidator do
   #
@@ -9,7 +11,7 @@ describe OmniAuth::Auth0::JWTValidator do
   #
 
   let(:client_id) { 'CLIENT_ID' }
-  let(:client_secret) { 'CLIENT_SECRET' }
+  let(:client_secret) { "CLIENT_SECRET_#{'a' * 50}" } # At least 64 chars for JWT HS256
   let(:domain) { 'samples.auth0.com' }
   let(:key_host) { 'custom-keys.business.com' }
   let(:future_timecode) { 32_503_680_000 }
@@ -170,14 +172,19 @@ describe OmniAuth::Auth0::JWTValidator do
     end
 
     it 'should fail with missing issuer' do
+      payload = {
+        aud: client_id  # Need valid audience to get to issuer validation
+      }
+      token = make_hs256_token(payload)
       expect do
-        jwt_validator.decode(make_hs256_token)
+        jwt_validator.decode(token)
       end.to raise_error(JWT::InvalidIssuerError)
     end
 
     it 'should fail with invalid issuer' do
       payload = {
-        iss: 'https://auth0.com/'
+        iss: 'https://auth0.com/',
+        aud: client_id  # Need valid audience to get to issuer validation
       }
       token = make_hs256_token(payload)
       expect do
@@ -307,7 +314,7 @@ describe OmniAuth::Auth0::JWTValidator do
       'keyid:always,issuer:always'
     )
 
-    cert.sign private_key, OpenSSL::Digest::SHA1.new
+    cert.sign private_key, OpenSSL::Digest.new('SHA1')
   end
 
   def stub_jwks

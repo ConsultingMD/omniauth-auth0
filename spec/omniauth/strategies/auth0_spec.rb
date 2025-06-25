@@ -9,7 +9,7 @@ end
 
 describe OmniAuth::Strategies::Auth0 do
   let(:client_id) { 'CLIENT_ID' }
-  let(:client_secret) { 'CLIENT_SECRET' }
+  let(:client_secret) { "CLIENT_SECRET_#{'a' * 50}" } # At least 64 chars for JWT HS256
   let(:domain_url) { 'https://samples.auth0.com' }
   let(:key_host) { 'custom-keys.business.com' }
   let(:application) do

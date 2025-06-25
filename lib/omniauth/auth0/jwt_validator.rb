@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'base64'
 require 'uri'
 require 'json'
@@ -86,7 +88,7 @@ module OmniAuth
           algorithm: alg,
           leeway: 30,
           verify_expiration: true,
-          verify_iss: false,
+          verify_iss: true,
           iss: @issuer,
           verify_aud: true,
           aud: @client_id,
@@ -104,7 +106,7 @@ module OmniAuth
       # Get a JWKS from the domain
       # @return void
       def jwks
-        jwks_uri = URI(@key_host_uri + '.well-known/jwks.json')
+        jwks_uri = URI("#{@key_host_uri}.well-known/jwks.json")
         @jwks ||= json_parse(Net::HTTP.get(jwks_uri))
       end
 
